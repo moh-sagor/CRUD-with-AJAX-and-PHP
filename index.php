@@ -19,6 +19,9 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-4 p-3 border border-info rounded ">
+                <div class="msg">
+
+                </div>
                 <div class="form-control mt-3">
                     <label for="name">Student Name</label>
                     <input type="text" class="name form-control" id="name">
@@ -44,10 +47,26 @@
                 </div>
 
             </div>
+            <div class="col-md-7">
+                <table class="table" border="1">
+                    <thead>
+                        <tr>
+                            <th>Sl</th>
+                            <th>Student Name</th>
+                            <th>Email Address</th>
+                            <th>Phone Number</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tData">
+
+                    </tbody>
+
+                </table>
+            </div>
         </div>
     </div>
-
-
 
 
 

@@ -10,13 +10,28 @@ function insert()
     $email = $_POST["email"];
     $phone = $_POST["phone"];
     $status = $_POST["status"];
-    $qur = $con->query("INSERT INTO tbl_student(name,email,phone,status)VALUES('$name','$email','$phone','$status')");
-
-    if ($qur) {
-        echo "Data Submitted";
+    if ($name == '') {
+        echo "Name is required";
+    } else if ($email == '') {
+        echo "Email is required";
+    } else if ($phone == '') {
+        echo "Phone is required";
+    } else if ($status == '') {
+        echo "Status is required";
     } else {
-        echo "Data not Submitted";
+        $qur = $con->query("INSERT INTO tbl_student(name,email,phone,status)VALUES('$name','$email','$phone','$status')");
+
+        if ($qur) {
+            echo "Data Submitted";
+        } else {
+            echo "Data not Submitted";
+        }
+
     }
+
+
+
+
 }
 function update()
 {
@@ -24,7 +39,25 @@ function update()
 }
 function show()
 {
-    echo "Show function";
+    global $con;
+    $obj = $con->query("SELECT * FROM tbl_student");
+    $allData = "";
+    $sl = 1;
+    while ($data = $obj->fetch_assoc()) {
+        $allData .= "<tr>
+        <td>" . $sl . "</td>
+        <td>" . $data["name"] . "</td>
+        <td>" . $data["email"] . "</td>
+        <td>" . $data["phone"] . "</td>
+        <td>" . $data["status"] . "</td>
+        <td>
+        <a class='btn btn-info btn-sm'  href='#'>Edit</a>
+        <a class='btn btn-danger btn-sm' href='#'>Delete</a></td>
+        </tr>";
+        $sl++;
+    }
+    echo $allData;
+
 }
 function delete()
 {

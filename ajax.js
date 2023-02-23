@@ -15,25 +15,27 @@ jQuery(document).ready(function () {
                 action: "insert"
             },
             success: function (res) {
-                alert(res);
+                jQuery(".msg").html('<div class="alert alert-success">' + res + '</div>');
+                jQuery(".msg").fadeOut("5000");
+                jQuery(".name").val('');
+                jQuery(".email").val('');
+                jQuery(".phone").val('');
+                jQuery(".status").val('');
+                show();
             }
         });
     });
-    jQuery(document).on("click", ".show", function () {
-        var name = jQuery(".name").val();
-        var email = jQuery(".email").val();
-        var phone = jQuery(".phone").val();
-        var status = jQuery(".status").val();
+    show();
+    function show() {
         jQuery.ajax({
             url: "process.php",
             type: "POST",
             data: {
-
                 action: "show"
             },
             success: function (res) {
-
+                jQuery(".tData").html(res);
             }
-        });
-    });
+        })
+    }
 });
