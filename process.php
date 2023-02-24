@@ -44,15 +44,17 @@ function show()
     $allData = "";
     $sl = 1;
     while ($data = $obj->fetch_assoc()) {
-        $allData .= "<tr>
+        if ($data["sta"])
+
+            $allData .= "<tr>
         <td>" . $sl . "</td>
         <td>" . $data["name"] . "</td>
         <td>" . $data["email"] . "</td>
         <td>" . $data["phone"] . "</td>
         <td>" . $data["status"] . "</td>
         <td>
-        <a class='btn btn-info btn-sm'  href='#'>Edit</a>
-        <a class='btn btn-danger btn-sm' href='#'>Delete</a></td>
+        <button class='btn btn-info btn-sm'  href='#' id='edit'>Edit</button>
+        <button class='btn btn-danger btn-sm ' href='#' id='delete' value='" . $data['id'] . "'>Delete</button></td>
         </tr>";
         $sl++;
     }
@@ -61,7 +63,11 @@ function show()
 }
 function delete()
 {
-    echo "Delete function";
+    global $con;
+    $id = $_POST['id'];
+    $con->query("DELETE FROM tbl_student WHERE id = '$id'");
+    // echo "Item Deleted";
+    show();
 }
 
 

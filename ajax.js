@@ -25,6 +25,30 @@ jQuery(document).ready(function () {
             }
         });
     });
+
+    jQuery(document).on("click", "#delete", function () {
+        var id = jQuery(this).val();
+        jQuery("#deleteItem").modal("show");
+        jQuery(".btn-delete").val(id);
+    });
+    jQuery(document).on("click", ".btn-delete", function () {
+        var id = jQuery(this).val();
+        jQuery.ajax({
+            url: "process.php",
+            type: "POST",
+            data: {
+                id: id,
+                action: "delete"
+            },
+            success: function (res) {
+                jQuery("#deleteItem").modal("hide");
+                show();
+
+            }
+        });
+    });
+
+
     show();
     function show() {
         jQuery.ajax({
@@ -36,6 +60,6 @@ jQuery(document).ready(function () {
             success: function (res) {
                 jQuery(".tData").html(res);
             }
-        })
+        });
     }
 });
