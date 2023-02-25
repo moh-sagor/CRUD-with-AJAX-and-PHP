@@ -47,8 +47,8 @@
                 </div>
 
             </div>
-            <div class="col-md-7">
-                <table class="table" border="1">
+            <div class="col-md-7 border border-info rounded ">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Sl</th>

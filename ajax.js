@@ -48,6 +48,39 @@ jQuery(document).ready(function () {
         });
     });
 
+    jQuery(document).on("click", ".active", function () {
+        var id = jQuery(this).val();
+        jQuery.ajax({
+            url: "process.php",
+            type: "POST",
+            data: {
+                id: id,
+                action: "active"
+            },
+            success: function (res) {
+                show();
+            }
+        });
+    });
+
+
+    jQuery(document).on("click", ".inactive", function () {
+        var id = jQuery(this).val();
+        jQuery.ajax({
+            url: "process.php",
+            type: "POST",
+            data: {
+                id: id,
+                action: "inactive"
+            },
+            success: function (res) {
+                show();
+            }
+        });
+    });
+
+
+
 
     show();
     function show() {

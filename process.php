@@ -44,14 +44,18 @@ function show()
     $allData = "";
     $sl = 1;
     while ($data = $obj->fetch_assoc()) {
-        if ($data["sta"])
+        if ($data["status"] == 1) {
+            $status = "<button class=' active btn btn-primary btn-sm' value=" . $data["id"] . ">Active</button>";
+        } else {
+            $status = "<button class='inactive btn btn-warning btn-sm' value=" . $data["id"] . ">Inactive</button>";
+        }
 
-            $allData .= "<tr>
+        $allData .= "<tr>
         <td>" . $sl . "</td>
         <td>" . $data["name"] . "</td>
         <td>" . $data["email"] . "</td>
         <td>" . $data["phone"] . "</td>
-        <td>" . $data["status"] . "</td>
+        <td>" . $status . "</td>
         <td>
         <button class='btn btn-info btn-sm'  href='#' id='edit'>Edit</button>
         <button class='btn btn-danger btn-sm ' href='#' id='delete' value='" . $data['id'] . "'>Delete</button></td>
@@ -68,6 +72,23 @@ function delete()
     $con->query("DELETE FROM tbl_student WHERE id = '$id'");
     // echo "Item Deleted";
     show();
+}
+
+function active()
+{
+    global $con;
+    $id = $_POST['id'];
+    $con->query("UPDATE tbl_student SET status='2' WHERE id='$id'");
+
+
+}
+function inactive()
+{
+    global $con;
+    $id = $_POST['id'];
+    $con->query("UPDATE tbl_student SET status='1' WHERE id='$id'");
+
+
 }
 
 
